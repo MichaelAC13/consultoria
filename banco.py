@@ -7,12 +7,12 @@ import jwt
 
 def connectmysql():
   mydb = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="12345",
+            host="database-consultoria.ccxoiodaf5ni.us-east-1.rds.amazonaws.com",
+            user="admin",
+            password="12345678",
             database="consultoria",
             charset="utf8",
-            connect_timeout=28800,
+            # connect_timeout=28800,
             buffered=True,
             port=3306
         )
@@ -139,8 +139,8 @@ class interactions():
       if token['password'] == user['password']:
         chave = str(a[0][2]).split('.')[2] 
         return {"message": "Usuário Logado" , "token": chave }
-    except:
-      return {"message": "Usuário Não Logado"}
+    except Exception as e:
+      return {"message": e}
 
   def contarpaginas():
       mydb  = connectmysql()
